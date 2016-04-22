@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Restless_Leg.Models
+namespace Restless_Legs.Models
 {
+    [Table ("Locations")]
     public class Location
     {
         [Key]

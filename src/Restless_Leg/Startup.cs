@@ -1,21 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Restless_Leg.Models; 
+using Microsoft.Extensions.Configuration;
+using Microsoft.Data.Entity;
+using Restless_Legs.Models; 
 
-namespace Restless_Leg
+namespace Restless_Legs
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        public IConfigurationRoot Configuration { get; set; }
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json");
+            Configuration = builder.Build();
+        }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddEntityFramework()
+               .AddSqlServer()
+               .AddDbContext<Restless_LegDbContext>(options =>
+               options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
             services.AddMvc();
         }
 
