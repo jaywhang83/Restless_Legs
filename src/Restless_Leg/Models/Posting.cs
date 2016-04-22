@@ -10,8 +10,9 @@ namespace Restless_Leg.Models
     {
         [Key]
         public int PostingId { get; set; }
-        public string Author { get; set; }
         public string Title { get; set; }
+        public string Author { get; set; }
+        public DateTime Date { get; set; }
         public string Description { get; set; }
         public int LocationId { get; set; }
         public virtual Location Location { get; set; } 
