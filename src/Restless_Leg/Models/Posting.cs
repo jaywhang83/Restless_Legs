@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restless_Leg.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,5 +19,6 @@ namespace Restless_Legs.Models
         public string Description { get; set; }
         public int LocationId { get; set; }
         public virtual Location Location { get; set; } 
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
