@@ -6,7 +6,6 @@ using Microsoft.AspNet.Mvc;
 using Restless_Legs.Models;
 using Microsoft.Data.Entity;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Restless_Leg.Controllers
 {
@@ -16,13 +15,13 @@ namespace Restless_Leg.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View(db.Locations.ToList());
+            return View();
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Search(string location)
         {
-            var thisLocation = db.Locations.FirstOrDefault(locations => locations.LocationId == id);
-            thisLocation.Postings = db.Postings.Where(p => p.LocationId == id).Include(c => c.Comments).ToList();
+            var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name == location);
+            thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).Include(c => c.Comments).ToList();
             return View(thisLocation); 
         }
 
@@ -52,6 +51,7 @@ namespace Restless_Leg.Controllers
             db.SaveChanges();
             return RedirectToAction("Index"); 
         }
+
 
         public IActionResult Delete(int id)
         {
