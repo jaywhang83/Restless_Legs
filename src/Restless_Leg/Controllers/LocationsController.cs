@@ -11,19 +11,23 @@ namespace Restless_Leg.Controllers
 {
     public class LocationsController : Controller
     {
-        private Restless_LegDbContext db = new Restless_LegDbContext(); 
+        private Restless_LegDbContext db = new Restless_LegDbContext();
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string location)
         {
-            return View();
+            Console.Write(location);
+            var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name == location);
+            //thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).Include(c => c.Comments).ToList();
+            return View(thisLocation);
         }
 
-        public IActionResult Search(string location)
-        {
-            var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name == location);
-            thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).Include(c => c.Comments).ToList();
-            return View(thisLocation); 
-        }
+        //public IActionResult Details(string location)
+        //{
+        //    Console.Write(location);
+        //    var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name.Contains(location));
+        //    //thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).Include(c => c.Comments).ToList();
+        //    return View(thisLocation); 
+        //}
 
         public IActionResult Create()
         {

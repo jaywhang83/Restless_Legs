@@ -16,6 +16,24 @@ namespace Restless_Leg.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Restless_Legs.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int>("PostingId");
+
+                    b.HasKey("CommentId");
+
+                    b.HasAnnotation("Relational:TableName", "Comments");
+                });
+
             modelBuilder.Entity("Restless_Legs.Models.Location", b =>
                 {
                     b.Property<int>("LocationId")
@@ -48,6 +66,13 @@ namespace Restless_Leg.Migrations
                     b.HasKey("PostingId");
 
                     b.HasAnnotation("Relational:TableName", "Postings");
+                });
+
+            modelBuilder.Entity("Restless_Legs.Models.Comment", b =>
+                {
+                    b.HasOne("Restless_Legs.Models.Posting")
+                        .WithMany()
+                        .HasForeignKey("PostingId");
                 });
 
             modelBuilder.Entity("Restless_Legs.Models.Posting", b =>

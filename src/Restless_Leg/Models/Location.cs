@@ -11,6 +11,10 @@ namespace Restless_Legs.Models
     [Table ("Locations")]
     public class Location
     {
+        public Location()
+        {
+            this.Postings = new HashSet<Posting>();
+        }
         [Key]
         public int LocationId { get; set; }
         public string Name { get; set; }

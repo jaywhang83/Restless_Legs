@@ -8,14 +8,32 @@ using Restless_Legs.Models;
 namespace Restless_Leg.Migrations
 {
     [DbContext(typeof(Restless_LegDbContext))]
-    [Migration("20160422224544_MakeTableNamesPlural")]
-    partial class MakeTableNamesPlural
+    [Migration("20160423030659_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Restless_Legs.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Author");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<int>("PostingId");
+
+                    b.HasKey("CommentId");
+
+                    b.HasAnnotation("Relational:TableName", "Comments");
+                });
 
             modelBuilder.Entity("Restless_Legs.Models.Location", b =>
                 {
@@ -49,6 +67,13 @@ namespace Restless_Leg.Migrations
                     b.HasKey("PostingId");
 
                     b.HasAnnotation("Relational:TableName", "Postings");
+                });
+
+            modelBuilder.Entity("Restless_Legs.Models.Comment", b =>
+                {
+                    b.HasOne("Restless_Legs.Models.Posting")
+                        .WithMany()
+                        .HasForeignKey("PostingId");
                 });
 
             modelBuilder.Entity("Restless_Legs.Models.Posting", b =>

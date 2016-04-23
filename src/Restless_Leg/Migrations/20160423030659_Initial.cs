@@ -10,7 +10,7 @@ namespace Restless_Leg.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Location",
+                name: "Locations",
                 columns: table => new
                 {
                     LocationId = table.Column<int>(nullable: false)
@@ -23,7 +23,7 @@ namespace Restless_Leg.Migrations
                     table.PrimaryKey("PK_Location", x => x.LocationId);
                 });
             migrationBuilder.CreateTable(
-                name: "Posting",
+                name: "Postings",
                 columns: table => new
                 {
                     PostingId = table.Column<int>(nullable: false)
@@ -40,16 +40,38 @@ namespace Restless_Leg.Migrations
                     table.ForeignKey(
                         name: "FK_Posting_Location_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "Location",
+                        principalTable: "Locations",
                         principalColumn: "LocationId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Author = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    PostingId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comment", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_Comment_Posting_PostingId",
+                        column: x => x.PostingId,
+                        principalTable: "Postings",
+                        principalColumn: "PostingId",
                         onDelete: ReferentialAction.Cascade);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("Posting");
-            migrationBuilder.DropTable("Location");
+            migrationBuilder.DropTable("Comments");
+            migrationBuilder.DropTable("Postings");
+            migrationBuilder.DropTable("Locations");
         }
     }
 }

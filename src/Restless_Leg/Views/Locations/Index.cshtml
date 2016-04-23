@@ -1,4 +1,5 @@
 ﻿@model Restless_Legs.Models.Location
+@*@model IEnumerable<Restless_Legs.Models.Location>*@
 
 @{
     ViewData["Title"] = "Restless Legs";
@@ -6,12 +7,21 @@
 }
 
 <h2>Search the location</h2>
+@*@Html.DisplayFor(model => model.Name)*@
+@*@foreach (var location in Model)
+{
+    @Html.DisplayFor(modellocation => location.Name)
+
+
+}*@
 
 @using (Html.BeginForm())
 {
     <p>@Html.LabelFor(model => model.Name)</p>
-    <p>@Html.EditorFor(model => model.Name)</p>
+    <p>@Html.TextBox("location")</p>
 
-    <input type="submit" value="Search" />
+    <input type="submit" value="Filter"/>
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>
+
+<h2>@Html.DisplayNameFor(model => model.Name):@Html.DisplayFor(model => model.Name)</h2>
