@@ -1,4 +1,4 @@
-﻿@model Restless_Legs.Models.Location
+﻿@model Restless_Legs.Models.Posting
 
 @{
     ViewData["Title"] = "Restless Legs";
@@ -7,18 +7,27 @@
 
 <h2>Edit</h2>
 <hr />
-<h4>Edit this Location: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Edit this Location: @Html.DisplayFor(model => model.Title)</h4>
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.LocationId)
+    @Html.HiddenFor(model => model.PostingId)
 
-    <p>@Html.LabelFor(model => model.Name)</p>
-        <p>@Html.EditorFor(model => model.Name)</p>
+    <p>@Html.LabelFor(model => model.Title)</p>
+    <p>@Html.EditorFor(model => model.Title)</p>
 
-        <p>@Html.LabelFor(model => model.Image)</p>
-        <p>@Html.EditorFor(model => model.Image)</p>
+    <p>@Html.LabelFor(model => model.Author)</p>
+    <p>@Html.EditorFor(model => model.Author)</p>
 
-        <input type="submit" value="Save" />
+    <p>@Html.LabelFor(model => model.Date)</p>
+    <p>@Html.EditorFor(model => model.Date)</p>
+
+    <p>@Html.LabelFor(model => model.Description)</p>
+    <p>@Html.EditorFor(model => model.Description)</p>
+
+    <p>@Html.LabelFor(model => model.Location)</p>
+    <p>@Html.DropDownList("LocationId")</p>
+
+    <input type="submit" value="Save" />
 }
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Back to list", "Index", "Locations")</p>
