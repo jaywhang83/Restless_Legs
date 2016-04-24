@@ -13,12 +13,17 @@ namespace Restless_Leg.Controllers
     {
         private Restless_LegDbContext db = new Restless_LegDbContext();
         // GET: /<controller>/
-        public IActionResult Index(string location)
+        public IActionResult Index(Location location)
         {
             Console.Write(location);
-            var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name == location);
-            //thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).Include(c => c.Comments).ToList();
+            var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name == location.Name);
+            //int id = thisLocation.LocationId;
+            thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).ToList();
+            //thisLocation.Postings = db.Postings.ToList();
+
             return View(thisLocation);
+            //return View(db.Locations.Include(locations => locations.Postings).ToList());
+
         }
 
         //public IActionResult Details(string location)

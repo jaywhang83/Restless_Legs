@@ -7,21 +7,30 @@
 }
 
 <h2>Search the location</h2>
-@*@Html.DisplayFor(model => model.Name)*@
-@*@foreach (var location in Model)
-{
-    @Html.DisplayFor(modellocation => location.Name)
-
-
-}*@
 
 @using (Html.BeginForm())
 {
     <p>@Html.LabelFor(model => model.Name)</p>
-    <p>@Html.TextBox("location")</p>
+    <p>@Html.EditorFor(model => model.Name)</p>
 
-    <input type="submit" value="Filter"/>
+    <input type="submit" value="Search"/>
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>
 
 <h2>@Html.DisplayNameFor(model => model.Name):@Html.DisplayFor(model => model.Name)</h2>
+<img src=@Html.DisplayFor(model => model.Image)/>
+<h2>@Html.DisplayNameFor(model => model.LocationId):@Html.DisplayFor(model => model.LocationId)</h2>
+@*@foreach (var posting in Model.Postings)
+{
+    <h2>@Html.DisplayNameFor(model => posting.Title):@Html.DisplayFor(model => posting.Title)</h2>
+}*@
+@*@foreach (var post in Model.Postings)*@
+    {
+        @*<h2>@Html.DisplayNameFor(model => location.Name):@Html.DisplayFor(model => location.Name)</h2>
+        @foreach (var post in location.Postings)
+        {*@
+            @*<h2>@Html.DisplayNameFor(model => post.Author):@Html.DisplayFor(model => post.Author)</h2>*@
+
+        @*}*@
+}
+
