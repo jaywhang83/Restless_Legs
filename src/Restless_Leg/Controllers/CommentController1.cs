@@ -11,61 +11,60 @@ using Microsoft.Data.Entity;
 
 namespace Restless_Leg.Controllers
 {
-    public class PostingsController1 : Controller
+    public class CommentController1 : Controller
     {
-        private Restless_LegDbContext db = new Restless_LegDbContext();
+        // GET: /<controller>/
         //public IActionResult Index()
         //{
         //    return View();
         //}
-
+        private Restless_LegDbContext db = new Restless_LegDbContext();
         public IActionResult Details(int id)
         {
-            var thisPosting = db.Postings.FirstOrDefault(postings => postings.PostingId == id);
-            thisPosting.Comments = db.Comments.Where(x => x.CommentId == id).ToList();
-            return View(thisPosting);
+            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            return View(thisComment);
         }
 
         public IActionResult Create()
         {
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
+            ViewBag.PostingId = new SelectList(db.Postings, "PostingId", "Title");
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Posting posting)
+        public IActionResult Create(Comment comment)
         {
-            db.Postings.Add(posting);
+            db.Comments.Add(comment);
             db.SaveChanges();
             return RedirectToAction("Index", "Locations");
         }
 
         public IActionResult Edit(int id)
         {
-            var thisPosting = db.Postings.FirstOrDefault(postings => postings.PostingId == id);
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "Name");
-            return View(thisPosting);
+            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            ViewBag.PostingId = new SelectList(db.Postings, "PostingId", "Title");
+            return View(thisComment);
         }
 
         [HttpPost]
-        public IActionResult Edit(Posting posting)
+        public IActionResult Edit(Comment comment)
         {
-            db.Entry(posting).State = EntityState.Modified;
+            db.Entry(comment).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index", "Locations");
         }
 
         public IActionResult Delete(int id)
         {
-            var thisPosting = db.Postings.FirstOrDefault(postings => postings.PostingId == id);
-            return View(thisPosting);
+            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            return View(thisComment);
         }
 
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            var thisPosting = db.Postings.FirstOrDefault(postings => postings.PostingId == id);
-            db.Postings.Remove(thisPosting);
+            var thisComment = db.Comments.FirstOrDefault(comments => comments.CommentId == id);
+            db.Comments.Remove(thisComment);
             db.SaveChanges();
             return RedirectToAction("Index", "Locations");
         }
