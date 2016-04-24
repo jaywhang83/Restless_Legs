@@ -27,8 +27,9 @@
 
 
 @*@foreach (var posting in Model.Postings)
-{
-    <h2>@Html.DisplayNameFor(model => posting.Title):@Html.DisplayFor(model => posting.Title)</h2>
-}*@
+    {
+        <h2>@Html.DisplayNameFor(model => posting.Title):@Html.DisplayFor(model => posting.Title)</h2>
+        <p>@Html.ActionLink("Add New Person", "Create", "Persons")</p>
+    }*@
 
-
+<p>@Html.ActionLink("Add New Post", "Create", "Postings")</p>
