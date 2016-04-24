@@ -28,8 +28,8 @@
                 <p>@Html.DisplayNameFor(model => comment.Date): @Html.DisplayFor(model => comment.Date)</p>
                 <p>@Html.DisplayNameFor(model => comment.Content): @Html.DisplayFor(model => comment.Content)</p>
 
-                @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.CommentId }) | @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.PostingId })
-                
+                @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.CommentId }) | @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.CommentId })
+                <hr />
             </td>
         </tr>
     }

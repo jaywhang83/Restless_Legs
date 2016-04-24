@@ -1,13 +1,13 @@
-﻿@model Restless_Legs.Models.Posting
+﻿@model Restless_Legs.Models.Comment
 
 @{
     ViewData["Title"] = "Delete Posting";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Are you sure you want to delete this location?</h2>
+<h2>Are you sure you want to delete this Comment?</h2>
 <hr />
-@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)
+@Html.DisplayNameFor(model => model.Content): @Html.DisplayFor(model => model.Content)
 <hr />
 @using (Html.BeginForm())
 
