@@ -1,0 +1,36 @@
+﻿
+@model Restless_Legs.Models.Posting
+
+@{
+    ViewData["Title"] = "Location - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Location Details</h2>
+<hr />
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.PostingId }) | @Html.ActionLink("Delete", "Delete", new { id = Model.PostingId }) | @Html.ActionLink("Back to main", "Index", "Locations")</p>
+<hr />
+<p>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</p>
+<p>@Html.DisplayNameFor(model => model.Author):<br /> @Html.DisplayFor(model => model.Author)</p>
+<p>@Html.DisplayNameFor(model => model.Date):<br /> <img src=@Html.DisplayFor(model => model.Date)></p>
+<p>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</p>
+
+
+<hr />
+<p>@Html.DisplayNameFor(model => model.Comments):</p>
+
+<table class="table">
+    @foreach (var comment in Model.Comments)
+    {
+        <tr>
+            <td>
+                <p>@Html.DisplayNameFor(model => comment.Author):@Html.DisplayFor(modelItem => comment.Author)</p>
+                <p>@Html.DisplayNameFor(model => comment.Date): <br /> <img src=@Html.DisplayFor(model => comment.Date) width="300"></p>
+                <p>@Html.DisplayNameFor(model => comment.Content): @Html.DisplayFor(model => comment.Content)</p>
+
+                @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.PostingId }) | @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.PostingId }) | @Html.ActionLink("Add New Comment", "Create", "Comments")
+
+            </td>
+        </tr>
+    }
+</table>
+<hr />
