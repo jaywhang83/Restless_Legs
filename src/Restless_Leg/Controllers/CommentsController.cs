@@ -11,7 +11,7 @@ using Microsoft.Data.Entity;
 
 namespace Restless_Leg.Controllers
 {
-    public class CommentController1 : Controller
+    public class CommentsController : Controller
     {
         // GET: /<controller>/
         //public IActionResult Index()

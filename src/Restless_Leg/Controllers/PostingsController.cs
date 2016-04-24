@@ -22,7 +22,7 @@ namespace Restless_Leg.Controllers
         public IActionResult Details(int id)
         {
             var thisPosting = db.Postings.FirstOrDefault(postings => postings.PostingId == id);
-            thisPosting.Comments = db.Comments.Where(x => x.CommentId == id).ToList();
+            thisPosting.Comments = db.Comments.Where(x => x.PostingId == id).ToList();
             return View(thisPosting);
         }
 

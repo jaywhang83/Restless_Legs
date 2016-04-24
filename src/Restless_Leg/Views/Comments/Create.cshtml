@@ -1,0 +1,28 @@
+﻿@model Restless_Legs.Models.Comment
+
+@{
+    ViewData["Title"] = "Add new Comment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Create a Comment</h4>
+<hr />
+@using (Html.BeginForm())
+{
+
+    <p>@Html.LabelFor(model => model.Author)</p>
+    <p>@Html.EditorFor(model => model.Author)</p>
+
+    <p>@Html.LabelFor(model => model.Date)</p>
+    <p>@Html.EditorFor(model => model.Date)</p>
+
+    <p>@Html.LabelFor(model => model.Content)</p>
+    <p>@Html.EditorFor(model => model.Content)</p>
+
+    <p>@Html.LabelFor(model => model.Posting)</p>
+    <p>@Html.DropDownList("PostingId")</p>
+
+    <input type="submit" value="Create" class="btn btn-default" />
+}
+<hr />
+@Html.ActionLink("Back to list", "Index")

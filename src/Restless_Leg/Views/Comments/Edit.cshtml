@@ -1,0 +1,30 @@
+﻿@model Restless_Legs.Models.Comment
+
+@{
+    ViewData["Title"] = "Restless Legs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<hr />
+<h4>Edit this Comment by: @Html.DisplayFor(model => model.Author)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CommentId)
+
+    <p>@Html.LabelFor(model => model.Author)</p>
+    <p>@Html.EditorFor(model => model.Author)</p>
+
+    <p>@Html.LabelFor(model => model.Date)</p>
+    <p>@Html.EditorFor(model => model.Date)</p>
+
+    <p>@Html.LabelFor(model => model.Content)</p>
+    <p>@Html.EditorFor(model => model.Content)</p>
+
+    <p>@Html.LabelFor(model => model.Posting)</p>
+    <p>@Html.DropDownList("PostingId")</p>
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to list", "Index", "Locations")</p>

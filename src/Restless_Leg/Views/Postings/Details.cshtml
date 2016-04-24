@@ -17,18 +17,19 @@
 
 <hr />
 <p>@Html.DisplayNameFor(model => model.Comments):</p>
+<p>@Html.ActionLink("Add New Comment", "Create", "Comments")</p>
 
 <table class="table">
     @foreach (var comment in Model.Comments)
     {
         <tr>
             <td>
-                <p>@Html.DisplayNameFor(model => comment.Author):@Html.DisplayFor(modelItem => comment.Author)</p>
+                <p>@Html.DisplayNameFor(model => comment.Author):@Html.DisplayFor(model => comment.Author)</p>
                 <p>@Html.DisplayNameFor(model => comment.Date): @Html.DisplayFor(model => comment.Date)</p>
                 <p>@Html.DisplayNameFor(model => comment.Content): @Html.DisplayFor(model => comment.Content)</p>
 
-                @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.PostingId }) | @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.PostingId }) | @Html.ActionLink("Add New Comment", "Create", "Comments")
-
+                @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.CommentId }) | @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.PostingId })
+                
             </td>
         </tr>
     }
