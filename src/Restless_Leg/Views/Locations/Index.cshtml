@@ -18,6 +18,8 @@
 }
 <p>@Html.ActionLink("Back to list", "Index")</p>
 
+@*<p>@Html.ActionLink("Edit", "Edit", new { id = Model.LocationId })</p>*@
+@*<p>@Html.ActionLink("Delete", "Delete", new { id = Model.LocationId }) |</p>*@
 <h2>@Html.DisplayNameFor(model => model.Name):@Html.DisplayFor(model => model.Name)</h2>
 <img src=@Html.DisplayFor(model => model.Image)/>
 <h2>@Html.DisplayNameFor(model => model.LocationId):@Html.DisplayFor(model => model.LocationId)</h2>
