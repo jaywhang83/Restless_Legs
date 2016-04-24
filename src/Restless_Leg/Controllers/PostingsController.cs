@@ -11,7 +11,7 @@ using Microsoft.Data.Entity;
 
 namespace Restless_Leg.Controllers
 {
-    public class PostingsController1 : Controller
+    public class PostingsController : Controller
     {
         private Restless_LegDbContext db = new Restless_LegDbContext();
         //public IActionResult Index()
