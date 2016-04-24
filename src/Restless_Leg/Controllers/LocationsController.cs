@@ -15,14 +15,13 @@ namespace Restless_Leg.Controllers
         // GET: /<controller>/
         public IActionResult Index(Location location)
         {
-            Console.Write(location);
             var thisLocation = db.Locations.FirstOrDefault(locations => locations.Name == location.Name);
             //int id = thisLocation.LocationId;
-            thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).ToList();
+            //thisLocation.Postings = db.Postings.Where(p => p.LocationId == thisLocation.LocationId).ToList();
             //thisLocation.Postings = db.Postings.ToList();
 
             return View(thisLocation);
-            //return View(db.Locations.Include(locations => locations.Postings).ToList());
+            //return View(db.Locations.Include(locations => locations.Postings).ToList()); 
 
         }
 
