@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4>Create a Location</h4>
+<h4>Add a new Posting</h4>
 <hr />
 @using (Html.BeginForm())
 {
@@ -27,4 +27,4 @@
     <input type="submit" value="Create" class="btn btn-default" />
 }
 <hr />
-@Html.ActionLink("Back to list", "Index")
+@Html.ActionLink("Back to list", "Index", "Locations")
