@@ -4,7 +4,9 @@ using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.Entity;
-using Restless_Legs.Models; 
+using Restless_Legs.Models;
+using Restless_Leg.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Restless_Legs
 {
@@ -24,6 +26,9 @@ namespace Restless_Legs
                .AddDbContext<Restless_LegDbContext>(options =>
                options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
             services.AddMvc();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using System.Security.Claims
+@model ICollection<Restless_Legs.Models.Location>
+
+<h1>Restless Legs</h1>
+<hr />
+@if (User.IsSignedIn())
+{
+    <p>Hello @User.GetUserName()!</p>
+    @Html.ActionLink("View your locations", "Index", "Locations")
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+        <input type="submit" class="btn btn-default" value="Log out" />
+    }
+}
+else
+{
+    <p>@Html.ActionLink("Register", "Register")</p>
+    <p>@Html.ActionLink("Log in", "Login")</p>
+}
+<hr />
+@*view all images here*@
+<h4>Here are all of our images:</h4>
+
+@foreach (var imageList in Model)
+{
+    <img src=@Html.DisplayFor(model => imageList.Image) />
+}
